@@ -9,7 +9,6 @@ import * as z from 'zod';
 import {Button} from '@/components/ui/button';
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
-import {SignInValidation, SignUpValidation} from '@/lib/validations';
 import {useUserContext} from '@/context/AuthContext';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
@@ -17,12 +16,12 @@ import {useCreateUserAccount, useSignInAccount} from '@/lib/react-query/mutation
 
 type Props = {
   action: 'SignIn' | 'SignUp';
+  formSchema: z.AnyZodObject;
 };
 
 const getActionData = (action: string) => {
   return action === 'SignIn'
     ? {
-        formSchema: SignInValidation,
         defaultValues: {
           email: '',
           password: '',
@@ -37,7 +36,6 @@ const getActionData = (action: string) => {
         },
       }
     : {
-        formSchema: SignUpValidation,
         defaultValues: {
           name: '',
           username: '',
@@ -55,10 +53,10 @@ const getActionData = (action: string) => {
       };
 };
 
-const Auth = ({action}: Props) => {
+const Auth = ({action, formSchema}: Props) => {
   const router = useRouter();
 
-  const {formSchema, defaultValues, title, description, button, link} = getActionData(action);
+  const {defaultValues, title, description, button, link} = getActionData(action);
 
   const isSignUp: boolean = action === 'SignUp';
 
