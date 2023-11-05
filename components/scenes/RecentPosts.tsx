@@ -11,9 +11,7 @@ import {ERROR_ALERT_PROPS} from '@/constants';
 const RecentPosts = () => {
   const {data: posts, isPending: isPostLoading, isError: isPostError} = useGetRecentPosts();
 
-  const isOK = true;
-
-  if (isOK || isPostError) return <Alert {...ERROR_ALERT_PROPS} />;
+  if (isPostError) return <Alert {...ERROR_ALERT_PROPS} />;
 
   return (
     <>

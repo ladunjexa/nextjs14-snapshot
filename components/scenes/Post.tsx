@@ -11,6 +11,9 @@ import Link from 'next/link';
 import {useDeletePost} from '@/lib/react-query/mutations/post.mutation';
 import {useRouter} from 'next/navigation';
 import Loader from '../shared/atoms/Loader';
+import {useGetUserPosts} from '@/lib/react-query/queries/user.query';
+import GridPostList from '../shared/GridPostList';
+import Alert from '../shared/atoms/Alert';
 
 type Props = {
   postId: string;
@@ -20,6 +23,7 @@ const Post = ({postId}: Props) => {
   const router = useRouter();
   const {user} = useUserContext();
   const {data: post, isPending: isPostPending} = useGetPostById((postId as string) || '');
+  const {data: userPosts, isPending: isUserPostLoading} = useGetUserPosts(post?.creator.$id);
 
   const {mutate: deletePost} = useDeletePost();
 
@@ -29,6 +33,10 @@ const Post = ({postId}: Props) => {
     deletePost({postId, imageId: post?.imageId});
     router.back();
   };
+
+  const relatedPosts = userPosts?.documents.filter(userPost => userPost.$id !== postId);
+
+  console.log(relatedPosts);
 
   return (
     <div className="post_details-container">
@@ -104,6 +112,24 @@ const Post = ({postId}: Props) => {
           </div>
         </div>
       )}
+
+      <div className="w-full max-w-5xl">
+        <hr className="w-full border border-dark-4/40" />
+        <h3 className="body-bold md:h3-bold my-10 w-full">More Related Posts</h3>
+        {isUserPostLoading || !relatedPosts ? (
+          <Loader />
+        ) : relatedPosts.length === 0 ? (
+          <Alert
+            title="No Related Posts"
+            description="It appears that there are no related posts 😔. Start exploring and saving posts that pique your interest 🌟"
+            link="/"
+            linkTitle="Explore Posts"
+            imgSrc="/assets/icons/magnify.png"
+          />
+        ) : (
+          <GridPostList posts={relatedPosts} />
+        )}
+      </div>
     </div>
   );
 };
