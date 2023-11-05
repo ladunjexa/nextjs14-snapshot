@@ -211,3 +211,39 @@ export async function likePost(postId: string, likes: string[]) {
     console.error(error);
   }
 }
+
+export async function getInfinitePosts({pageParam = 0}: {pageParam: number}) {
+  try {
+    const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(10)];
+
+    if (pageParam) {
+      queries.push(Query.cursorAfter(pageParam.toString()));
+    }
+
+    const posts = await database.listDocuments(config.databaseId, config.postCollectionId, queries);
+
+    if (!posts) {
+      throw new Error('Post retrieval failed');
+    }
+
+    return posts;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function searchPosts(searchTerm: string) {
+  try {
+    const posts = await database.listDocuments(config.databaseId, config.postCollectionId, [
+      Query.search('caption', searchTerm),
+    ]);
+
+    if (!posts) {
+      throw new Error('Post retrieval failed');
+    }
+
+    return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
