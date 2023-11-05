@@ -1,3 +1,4 @@
+import Bottombar from '@/components/shared/layout/Bottombar';
 import LeftSidebar from '@/components/shared/layout/LeftSidebar';
 import Topbar from '@/components/shared/layout/Topbar';
 import React from 'react';
@@ -11,7 +12,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
       <section className="flex h-full flex-1">{children}</section>
 
       {/* <RightSidebar /> */}
-      {/* <Bottombar /> */}
+      <Bottombar />
     </main>
   );
 }
