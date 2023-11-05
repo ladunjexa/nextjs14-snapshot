@@ -192,3 +192,22 @@ export async function getRecentPosts() {
     console.error(error);
   }
 }
+
+export async function likePost(postId: string, likes: string[]) {
+  try {
+    const updatedPost = await database.updateDocument(
+      config.databaseId,
+      config.postCollectionId,
+      postId,
+      {likes}
+    );
+
+    if (!updatedPost) {
+      throw new Error('Post update failed');
+    }
+
+    return updatedPost;
+  } catch (error) {
+    console.error(error);
+  }
+}
