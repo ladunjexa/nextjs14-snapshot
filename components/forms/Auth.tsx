@@ -14,9 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-
 import {Input} from '@/components/ui/input';
-import {Props} from 'next/script';
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -24,7 +22,7 @@ const formSchema = z.object({
   }),
 });
 
-const Auth = (props: Props) => {
+const Auth = () => {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
