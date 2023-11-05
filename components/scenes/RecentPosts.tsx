@@ -16,7 +16,7 @@ const RecentPosts = () => {
   return (
     <>
       {isPostLoading && !posts ? (
-        <Loader />
+        <Loader otherClasses="w-[500px]" />
       ) : (
         <ul className="flex w-full flex-1 flex-col gap-9">
           {posts?.documents.map((post: Models.Document) => <PostCard key={post.$id} post={post} />)}
