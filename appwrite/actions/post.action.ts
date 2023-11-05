@@ -265,3 +265,25 @@ export async function searchPosts(searchTerm: string) {
     console.log(error);
   }
 }
+
+export async function getUserPosts(userId?: string) {
+  if (!userId) {
+    throw new Error('Missing user ID');
+  }
+
+  try {
+    const posts = await database.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      [Query.equal('creator', userId), Query.orderDesc('$createdAt')]
+    );
+
+    if (!posts) {
+      throw new Error('Post retrieval failed');
+    }
+
+    return posts;
+  } catch (error) {
+    console.error(error);
+  }
+}
