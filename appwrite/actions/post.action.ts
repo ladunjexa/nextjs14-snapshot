@@ -2,6 +2,7 @@ import {database, storage, ID} from '@/appwrite/client';
 import config from '@/appwrite/conf';
 
 import type {INewPost, IUpdatePost} from '@/types';
+import {Query} from 'appwrite';
 
 export async function createPost(post: INewPost) {
   try {
@@ -170,6 +171,23 @@ export async function getPostById(postId: string) {
     }
 
     return post;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getRecentPosts() {
+  try {
+    const posts = await database.listDocuments(config.databaseId, config.postCollectionId, [
+      Query.orderDesc('$createdAt'),
+      Query.limit(20),
+    ]);
+
+    if (!posts) {
+      throw new Error('Post retrieval failed');
+    }
+
+    return posts;
   } catch (error) {
     console.error(error);
   }
