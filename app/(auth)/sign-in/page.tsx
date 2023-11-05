@@ -1,5 +1,5 @@
 import Auth from '@/components/forms/Auth';
 
 export default function Page() {
-  return <Auth />;
+  return <Auth action="SignIn" />;
 }
