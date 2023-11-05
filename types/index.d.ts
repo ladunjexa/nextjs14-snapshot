@@ -59,3 +59,14 @@ export type IContextType = {
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   checkAuthUser: () => Promise<boolean>;
 };
+
+export interface UrlQueryParams {
+  params: string;
+  key: string;
+  value: string | null;
+}
+
+export interface RemoveUrlQueryParams {
+  params: string;
+  keysToRemove: string[];
+}
