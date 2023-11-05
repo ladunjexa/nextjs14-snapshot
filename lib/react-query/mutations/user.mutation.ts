@@ -1,6 +1,11 @@
 'use client';
 
-import {createUserAccount, signInAccount, signOutAccount} from '@/appwrite/actions/user.action';
+import {
+  createUserAccount,
+  signInAccount,
+  signOutAccount,
+  updateUserAccount,
+} from '@/appwrite/actions/user.action';
 import {INewUser, IUpdateUser} from '@/types';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
 import QUERY_KEYS from '../QueryKeys';
