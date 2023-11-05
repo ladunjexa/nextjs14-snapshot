@@ -1,7 +1,8 @@
-import {INewUser} from '@/types';
+import {INewUser, IUpdateUser} from '@/types';
 import appwriteConfig from '../conf';
 import {account, avatars, database, ID} from '../client';
 import {Query} from 'appwrite';
+import {uploadFile, getFilePreview, deleteFile} from './post.action';
 
 export async function createUserAccount(user: INewUser) {
   try {
@@ -22,6 +23,65 @@ export async function createUserAccount(user: INewUser) {
     });
 
     return newUser;
+  } catch (error: any) {
+    console.error(error);
+  }
+}
+
+export async function updateUserAccount(user: IUpdateUser) {
+  try {
+    const hasFileToUpdate = user.file.length > 0;
+
+    let image = {
+      imageUrl: user.imageUrl,
+      imageId: user.imageId,
+    };
+
+    if (hasFileToUpdate) {
+      // Upload new file to appwrite storage
+      const uploadedFile = await uploadFile(user.file[0]);
+
+      if (!uploadedFile) {
+        throw new Error('File not uploaded');
+      }
+
+      // Get new file url
+      const fileUrl = getFilePreview(uploadedFile.$id);
+
+      if (!fileUrl) {
+        await deleteFile(uploadedFile.$id);
+        throw new Error('File not found');
+      }
+
+      image = {...image, imageUrl: fileUrl, imageId: uploadedFile.$id};
+    }
+
+    const updatedUser = await database.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      user.userId,
+      {
+        name: user.name,
+        bio: user.bio,
+        email: user.email,
+        imageUrl: image.imageUrl,
+        imageId: image.imageId,
+      }
+    );
+
+    if (!updatedUser) {
+      if (hasFileToUpdate && image.imageId) {
+        await deleteFile(image.imageId);
+      }
+
+      throw new Error('User not updated');
+    }
+
+    if (user.imageId && hasFileToUpdate) {
+      await deleteFile(user.imageId);
+    }
+
+    return updatedUser;
   } catch (error: any) {
     console.error(error);
   }
