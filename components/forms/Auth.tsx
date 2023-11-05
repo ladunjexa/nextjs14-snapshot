@@ -15,6 +15,7 @@ import Link from 'next/link';
 import {useCreateUserAccount, useSignInAccount} from '@/lib/react-query/mutations/user.mutation';
 import {SignInValidation, SignUpValidation} from '@/lib/validations';
 import Loader from '../shared/atoms/Loader';
+import {useToast} from '../ui/use-toast';
 
 type Props = {
   action: 'SignIn' | 'SignUp';
@@ -58,6 +59,7 @@ const getActionData = (action: string) => {
 
 const Auth = ({action}: Props) => {
   const router = useRouter();
+  const {toast} = useToast();
 
   const {formSchema, defaultValues, title, description, button, link} = getActionData(action);
 
@@ -87,7 +89,10 @@ const Auth = ({action}: Props) => {
         });
 
         if (!newUser) {
-          return;
+          return toast({
+            title: "Couldn't create account",
+            description: 'Something went wrong. Please try again.',
+          });
         }
       }
 
@@ -97,7 +102,10 @@ const Auth = ({action}: Props) => {
       });
 
       if (!session) {
-        return;
+        return toast({
+          title: "Couldn't sign in",
+          description: 'Wrong email or password. Please try again.',
+        });
       }
 
       const isLoggedIn = await checkAuthUser();
@@ -107,7 +115,10 @@ const Auth = ({action}: Props) => {
 
         router.push('/');
       } else {
-        throw new Error('Something went wrong');
+        return toast({
+          title: "Couldn't sign in",
+          description: 'Something went wrong. Please try again.',
+        });
       }
     } catch (error) {
       console.log(error);

@@ -20,6 +20,7 @@ import {ProfileValidation} from '@/lib/validations';
 import {useGetUserById} from '@/lib/react-query/queries/user.query';
 import {useUpdateUserAccount} from '@/lib/react-query/mutations/user.mutation';
 import Loader from '../shared/atoms/Loader';
+import {useToast} from '../ui/use-toast';
 
 type Props = {
   userId: string;
@@ -27,6 +28,7 @@ type Props = {
 
 const Profile = ({userId}: Props) => {
   const router = useRouter();
+  const {toast} = useToast();
 
   const {user, setUser} = useUserContext();
 
@@ -57,7 +59,10 @@ const Profile = ({userId}: Props) => {
       });
 
       if (!updatedUser) {
-        // todo: add toast
+        return toast({
+          title: "Couldn't update profile",
+          description: 'Something went wrong while updating your profile. Please try again.',
+        });
       } else {
         setUser({
           ...user,

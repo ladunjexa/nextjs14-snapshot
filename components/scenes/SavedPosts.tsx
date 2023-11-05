@@ -33,7 +33,7 @@ const SavedPosts = (props: Props) => {
               description="It appears that there are no saved posts in your collection at the moment 😔. Start exploring and saving posts that pique your interest 🌟"
               link="/"
               linkTitle="Explore Posts"
-              imgSrc="/assets/icons/magnify.png"
+              imgSrc="/assets/icons/bookmark.svg"
             />
           ) : (
             <GridPostList posts={savedPosts} showStats={false} />

@@ -47,11 +47,19 @@ const LocalResult = () => {
               description="It appears that there are no posts matching your search query 😔. Try searching for something else 💡"
               link="/"
               linkTitle="Explore Posts"
-              imgSrc="/assets/icons/magnify.png"
+              imgSrc="/assets/icons/search-colored.svg"
             />
           )
         ) : shouldShowPosts ? (
-          <p className="mt-10 w-full text-center text-light-4">End of posts</p>
+          <Alert
+            title="No Posts Found"
+            description="Be the first to break the silence! 🚀 Share a Post and kickstart the
+          network. Get
+          involved! 💡."
+            link="/create-post"
+            linkTitle="Create a Post"
+            imgSrc="/assets/icons/bookmark.svg"
+          />
         ) : (
           posts.pages.map((item: any, index) => (
             <GridPostList key={`page-${index}`} posts={item.documents} />

@@ -20,6 +20,7 @@ import {PostValidation} from '@/lib/validations';
 
 import {useGetPostById} from '@/lib/react-query/queries/post.query';
 import Loader from '../shared/atoms/Loader';
+import {useToast} from '../ui/use-toast';
 
 type Props = {
   action: 'Create' | 'Update';
@@ -27,6 +28,7 @@ type Props = {
 };
 
 const Post = ({action, postId}: Props) => {
+  const {toast} = useToast();
   const router = useRouter();
 
   const {user} = useUserContext();
@@ -55,8 +57,10 @@ const Post = ({action, postId}: Props) => {
       });
 
       if (!updatedPost) {
-        // todo: add toast
-        return;
+        return toast({
+          title: "Couldn't update post",
+          description: 'Something went wrong while updating your post.',
+        });
       }
 
       return router.push(`/posts/${post?.$id}`);
@@ -68,12 +72,16 @@ const Post = ({action, postId}: Props) => {
     });
 
     if (!newPost) {
-      // todo: add toast
-      return;
+      return toast({
+        title: "Couldn't create post",
+        description: 'Something went wrong while creating your post.',
+      });
     }
 
     router.push('/');
   }
+
+  if (action === 'Update' && isPostPending) return <Loader />;
 
   return (
     <Form {...form}>
@@ -150,7 +158,7 @@ const Post = ({action, postId}: Props) => {
             className="shad-button_primary whitespace-nowrap"
             disabled={isCreatingPost || isUpdatingPost}
           >
-            {isCreatingPost || isUpdatingPost || isPostPending ? (
+            {isCreatingPost || isUpdatingPost ? (
               <div className="flex-center gap-2">
                 <Loader /> Loading...
               </div>

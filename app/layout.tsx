@@ -5,6 +5,7 @@ import './globals.css';
 import type {Metadata} from 'next';
 import AuthProvider from '@/context/AuthContext';
 import Provider from '@/lib/react-query/Provider';
+import {Toaster} from '@/components/ui/toaster';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -24,6 +25,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <Provider>
             <AuthProvider>{children}</AuthProvider>
           </Provider>
+          <Toaster />
         </main>
       </body>
     </html>

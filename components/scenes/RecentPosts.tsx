@@ -19,7 +19,23 @@ const RecentPosts = () => {
         <Loader otherClasses="w-[500px]" />
       ) : (
         <ul className="flex w-full flex-1 flex-col gap-9">
-          {posts?.documents.map((post: Models.Document) => <PostCard key={post.$id} post={post} />)}
+          {posts?.documents.length === 0 ? (
+            <Alert
+              title="No Posts Found"
+              description="Be the first to break the silence! 🚀 Share a Post and kickstart the
+            network. Get
+            involved! 💡."
+              link="/create-post"
+              linkTitle="Create a Post"
+              imgSrc="/assets/icons/home.svg"
+            />
+          ) : (
+            <>
+              {posts?.documents.map((post: Models.Document) => (
+                <PostCard key={post.$id} post={post} />
+              ))}
+            </>
+          )}
         </ul>
       )}
     </>

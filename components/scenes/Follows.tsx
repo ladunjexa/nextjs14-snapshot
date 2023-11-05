@@ -38,7 +38,7 @@ const Follows = ({type, viewedId}: Props) => {
             description={`It appears that ${viewedUser.name} have no followers 😔`}
             link="/"
             linkTitle="Explore Posts"
-            imgSrc="/assets/icons/magnify.png"
+            imgSrc="/assets/icons/people.svg"
           />
         ) : (
           <>

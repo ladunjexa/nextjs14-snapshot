@@ -122,7 +122,7 @@ const Post = ({postId}: Props) => {
             description="It appears that there are no related posts 😔. Start exploring and saving posts that pique your interest 🌟"
             link="/"
             linkTitle="Explore Posts"
-            imgSrc="/assets/icons/magnify.png"
+            imgSrc="/assets/icons/wallpaper.svg"
           />
         ) : (
           <GridPostList posts={relatedPosts} />
