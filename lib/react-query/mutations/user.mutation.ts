@@ -1,6 +1,6 @@
 'use client';
 
-import {createUserAccount, signInAccount} from '@/appwrite/actions/user.action';
+import {createUserAccount, signInAccount, signOutAccount} from '@/appwrite/actions/user.action';
 import {INewUser} from '@/types';
 import {useMutation} from '@tanstack/react-query';
 
@@ -13,5 +13,11 @@ export const useCreateUserAccount = () => {
 export const useSignInAccount = () => {
   return useMutation({
     mutationFn: (user: {email: string; password: string}) => signInAccount(user),
+  });
+};
+
+export const useSignOutAccount = () => {
+  return useMutation({
+    mutationFn: signOutAccount,
   });
 };
