@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -22,27 +22,27 @@ type Props = {
 type StatBlockProps = {
   value: string | number;
   label: string;
+  link?: string;
 };
 
-const StatBlock = ({value, label}: StatBlockProps) => {
-  return (
+const StatBlock = ({value, label, link}: StatBlockProps) => {
+  const renderValue = () => (
     <div className="flex-center gap-2">
       <p className="small-semibold lg:body-bold text-primary-500">{value}</p>
       <p className="small-medium lg:base-medium text-light-2">{label}</p>
     </div>
   );
+
+  return link ? <Link href={link}>{renderValue()}</Link> : renderValue();
 };
 
 const Profile = ({userId}: Props) => {
-  const [followers, setFollowers] = useState<any[]>([]);
   const {data: currentUser} = useGetCurrentUser();
 
   const {data: viewedUser} = useGetUserById(userId);
 
   const {mutate: updateUserFollowers} = useUpdateUserFollowers();
   const {mutate: updateUserFollowing} = useUpdateUserFollowing();
-
-  useEffect(() => setFollowers(viewedUser?.followers || []), [viewedUser]);
 
   if (!viewedUser || !currentUser) {
     return (
@@ -64,7 +64,6 @@ const Profile = ({userId}: Props) => {
       newFollowing.push(viewedUser.$id);
     }
 
-    setFollowers(newFollowers);
     updateUserFollowers({userId: viewedUser.$id, followers: newFollowers});
     updateUserFollowing({userId: currentUser.$id, following: newFollowing});
   };
@@ -88,8 +87,16 @@ const Profile = ({userId}: Props) => {
 
             <div className="z-20 mt-10 flex flex-wrap items-center justify-center gap-8 xl:justify-start">
               <StatBlock value={viewedUser.posts.length} label="Posts" />
-              <StatBlock value={followers.length} label="Followers" />
-              <StatBlock value={viewedUser.following.length} label="Following" />
+              <StatBlock
+                value={viewedUser.followers.length}
+                label="Followers"
+                link={`/profile/${viewedUser.$id}/followers`}
+              />
+              <StatBlock
+                value={viewedUser.following.length}
+                label="Following"
+                link={`/profile/${viewedUser.$id}/following`}
+              />
             </div>
 
             <p className="small-medium md:base-medium mt-7 max-w-screen-sm">{viewedUser.bio}</p>
@@ -116,7 +123,7 @@ const Profile = ({userId}: Props) => {
 
             <div className={`${currentUser.id === userId && 'hidden'}`}>
               <Button type="button" onClick={handleFollowUser} className="shad-button_primary px-8">
-                {isUserFollow(followers, currentUser.$id) ? 'Unfollow' : 'Follow'}
+                {isUserFollow(viewedUser.followers, currentUser.$id) ? 'Unfollow' : 'Follow'}
               </Button>
             </div>
           </div>
