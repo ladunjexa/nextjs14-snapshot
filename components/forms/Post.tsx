@@ -149,7 +149,7 @@ const Post = ({action, postId}: Props) => {
             className="shad-button_primary whitespace-nowrap"
             disabled={isCreatingPost || isUpdatingPost}
           >
-            {action} Post
+            {isCreatingPost || isUpdatingPost || isPostPending ? 'Loading..' : `${action} Post`}
           </Button>
         </div>
       </form>

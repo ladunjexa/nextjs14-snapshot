@@ -180,7 +180,7 @@ const Auth = ({action}: Props) => {
           />
 
           <Button type="submit" className="shad-button_primary">
-            {button}
+            {isUserLoading || isCreatingAccount || isSigningIn ? 'Loading...' : button}
           </Button>
 
           <p className="small-regular mt-2 text-center text-light-2">
