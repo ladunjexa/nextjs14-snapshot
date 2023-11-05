@@ -10,6 +10,7 @@ import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Textarea} from '@/components/ui/textarea';
+import FileUploader from '../shared/FileUploader';
 
 import {PostValidation} from '@/lib/validations';
 
@@ -53,7 +54,9 @@ const Post = () => {
           render={({field}) => (
             <FormItem>
               <FormLabel className="shad-form_label">Add Photos</FormLabel>
-              <FormControl>{/* <FileUploader /> */}</FormControl>
+              <FormControl>
+                <FileUploader type="Post" fieldChange={field.onChange} mediaUrl={''} />
+              </FormControl>
               <FormMessage className="shad-form_message" />
             </FormItem>
           )}
