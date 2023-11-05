@@ -33,7 +33,7 @@ const LeftSidebar = () => {
     <nav className="leftsidebar custom-scrollbar">
       <div className="flex flex-col gap-11">
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/assets/images/logo.svg" alt="logo" width={170} height={36} />
+          <Image src="/assets/images/logo.svg" alt="logo" width={201} height={42} />
         </Link>
 
         <Link href={`/profile/${user.id}`} className="flex items-center gap-3">
