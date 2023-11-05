@@ -5,6 +5,8 @@ import {
   signInAccount,
   signOutAccount,
   updateUserAccount,
+  updateUserFollowers,
+  updateUserFollowing,
 } from '@/appwrite/actions/user.action';
 import {INewUser, IUpdateUser} from '@/types';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
@@ -38,6 +40,38 @@ export const useUpdateUserAccount = () => {
       });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
+      });
+    },
+  });
+};
+
+export const useUpdateUserFollowers = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({userId, followers}: {userId: string; followers: string[]}) =>
+      updateUserFollowers(userId, followers),
+    onSuccess: data => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_CURRENT_USER],
+      });
+    },
+  });
+};
+
+export const useUpdateUserFollowing = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({userId, following}: {userId: string; following: string[]}) =>
+      updateUserFollowing(userId, following),
+    onSuccess: data => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_CURRENT_USER],
       });
     },
   });

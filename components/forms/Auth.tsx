@@ -46,7 +46,7 @@ const getActionData = (action: string) => {
           password: '',
         },
         title: 'Create a new account',
-        description: "To use SnapShot, you'll need to create a new account. It's easy and free!",
+        description: "Let's get you all set up! Enter your details below.",
         button: 'Sign Up',
         link: {
           text: 'Already have an account?',
