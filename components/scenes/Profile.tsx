@@ -103,10 +103,10 @@ const Profile = ({userId}: Props) => {
           </div>
 
           <div className="flex justify-center gap-4">
-            <div className={`${currentUser.id !== viewedUser.$id && 'hidden'}`}>
+            <div className={`${currentUser.$id !== viewedUser.$id && 'hidden'}`}>
               <Link
                 href={`/edit-profile/${viewedUser.$id}`}
-                className={`${currentUser.id !== viewedUser.$id && 'hidden'}`}
+                className={`${currentUser.$id !== viewedUser.$id && 'hidden'}`}
               >
                 <Button type="button" onClick={() => {}} className="shad-button_primary">
                   <Image
@@ -121,7 +121,7 @@ const Profile = ({userId}: Props) => {
               </Link>
             </div>
 
-            <div className={`${currentUser.id === userId && 'hidden'}`}>
+            <div className={`${currentUser.$id === userId && 'hidden'}`}>
               <Button type="button" onClick={handleFollowUser} className="shad-button_primary px-8">
                 {isUserFollow(viewedUser.followers, currentUser.$id) ? 'Unfollow' : 'Follow'}
               </Button>
@@ -130,7 +130,7 @@ const Profile = ({userId}: Props) => {
         </div>
       </div>
 
-      {currentUser.id === viewedUser.$id ? (
+      {currentUser.$id === viewedUser.$id ? (
         <Tabs defaultValue="posts" className="w-full max-w-5xl">
           <TabsList className="mb-5 flex justify-start">
             <TabsTrigger value="posts" className="profile-tab rounded-l-lg">
