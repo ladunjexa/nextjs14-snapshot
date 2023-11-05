@@ -8,6 +8,7 @@ import {useLikePost} from '@/lib/react-query/mutations/post.mutation';
 import {useGetCurrentUser} from '@/lib/react-query/queries/user.query';
 
 import type {Models} from 'appwrite';
+import Loader from './atoms/Loader';
 
 type PostStatsProps = {
   post: Models.Document;
@@ -86,7 +87,7 @@ const PostStats = ({post, userId}: PostStatsProps) => {
       </div>
       <div className="flex gap-2">
         {isSavingPost || isDeletingSavedPost ? (
-          <p>Loading...</p>
+          <Loader />
         ) : (
           <PostStatsIcon icon={isSaved ? 'saved' : 'save'} onClick={handleSavePost} />
         )}

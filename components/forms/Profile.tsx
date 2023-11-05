@@ -19,6 +19,7 @@ import {ProfileValidation} from '@/lib/validations';
 
 import {useGetUserById} from '@/lib/react-query/queries/user.query';
 import {useUpdateUserAccount} from '@/lib/react-query/mutations/user.mutation';
+import Loader from '../shared/atoms/Loader';
 
 type Props = {
   userId: string;
@@ -75,7 +76,7 @@ const Profile = ({userId}: Props) => {
   if (!currentUser) {
     return (
       <div className="flex-center h-full w-full">
-        <p>Loading...</p>
+        <Loader />
       </div>
     );
   }
@@ -168,8 +169,13 @@ const Profile = ({userId}: Props) => {
             className="shad-button_primary whitespace-nowrap"
             disabled={isUpdatePending}
           >
-            {isUpdatePending && <p>Loading...</p>}
-            Update Profile
+            {isUpdatePending ? (
+              <div className="flex-center gap-2">
+                <Loader /> Loading..
+              </div>
+            ) : (
+              'Update Profile'
+            )}
           </Button>
         </div>
       </form>

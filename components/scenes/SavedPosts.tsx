@@ -3,7 +3,7 @@
 import React from 'react';
 
 import GridPostList from '@/components/shared/GridPostList';
-
+import Loader from '../shared/atoms/Loader';
 import {useGetCurrentUser} from '@/lib/react-query/queries/user.query';
 
 import type {Models} from 'appwrite';
@@ -23,7 +23,7 @@ const SavedPosts = (props: Props) => {
   return (
     <>
       {!currentUser ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <ul className="flex w-full max-w-5xl flex-wrap gap-9">
           {savedPosts.length === 0 ? (

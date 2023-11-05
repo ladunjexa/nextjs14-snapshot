@@ -14,6 +14,7 @@ import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 import {useCreateUserAccount, useSignInAccount} from '@/lib/react-query/mutations/user.mutation';
 import {SignInValidation, SignUpValidation} from '@/lib/validations';
+import Loader from '../shared/atoms/Loader';
 
 type Props = {
   action: 'SignIn' | 'SignUp';
@@ -182,7 +183,13 @@ const Auth = ({action}: Props) => {
           />
 
           <Button type="submit" className="shad-button_primary">
-            {isUserLoading || isCreatingAccount || isSigningIn ? 'Loading...' : button}
+            {isUserLoading || isCreatingAccount || isSigningIn ? (
+              <div className="flex-center gap-2">
+                <Loader /> Loading...
+              </div>
+            ) : (
+              button
+            )}
           </Button>
 
           <p className="small-regular mt-2 text-center text-light-2">

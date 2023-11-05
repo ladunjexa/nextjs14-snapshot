@@ -25,7 +25,7 @@ const LeftSidebar = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      router.push('/');
+      router.push('/sign-in');
     }
   }, [isSuccess, router]);
 

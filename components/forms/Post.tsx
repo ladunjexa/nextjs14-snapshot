@@ -19,6 +19,7 @@ import {useCreatePost, useUpdatePost} from '@/lib/react-query/mutations/post.mut
 import {PostValidation} from '@/lib/validations';
 
 import {useGetPostById} from '@/lib/react-query/queries/post.query';
+import Loader from '../shared/atoms/Loader';
 
 type Props = {
   action: 'Create' | 'Update';
@@ -149,7 +150,13 @@ const Post = ({action, postId}: Props) => {
             className="shad-button_primary whitespace-nowrap"
             disabled={isCreatingPost || isUpdatingPost}
           >
-            {isCreatingPost || isUpdatingPost || isPostPending ? 'Loading..' : `${action} Post`}
+            {isCreatingPost || isUpdatingPost || isPostPending ? (
+              <div className="flex-center gap-2">
+                <Loader /> Loading...
+              </div>
+            ) : (
+              `${action} Post`
+            )}
           </Button>
         </div>
       </form>

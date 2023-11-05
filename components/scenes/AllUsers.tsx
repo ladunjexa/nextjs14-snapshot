@@ -3,6 +3,7 @@
 import React from 'react';
 import {useGetUsers} from '@/lib/react-query/queries/user.query';
 import UserCard from '../cards/UserCard';
+import Loader from '../shared/atoms/Loader';
 
 const AllUsers = () => {
   const {data: creators, isLoading: isUserLoading, isError: isCreatorsError} = useGetUsers(10);
@@ -12,7 +13,7 @@ const AllUsers = () => {
   return (
     <>
       {isUserLoading && !creators ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <ul className="user-grid">
           {creators?.documents.map(creator => (

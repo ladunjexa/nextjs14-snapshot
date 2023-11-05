@@ -6,7 +6,7 @@ import React, {useEffect} from 'react';
 import GridPostList from '../GridPostList';
 import {useGetPosts, useSearchPosts} from '@/lib/react-query/queries/post.query';
 import useDebounce from '@/hooks/useDebounce';
-import {Loader} from 'lucide-react';
+import Loader from '../atoms/Loader';
 import {useInView} from 'react-intersection-observer';
 
 const LocalResult = () => {

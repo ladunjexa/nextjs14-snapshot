@@ -11,6 +11,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
 import GridPostList from '@/components/shared/GridPostList';
 
 import {useGetUserById} from '@/lib/react-query/queries/user.query';
+import Loader from '@/components/shared/atoms/Loader';
 
 type Props = {
   userId: string;
@@ -38,7 +39,7 @@ const Profile = ({userId}: Props) => {
   if (!currentUser) {
     return (
       <div className="flex-center h-full w-full">
-        <p>Loading...</p>
+        <Loader />
       </div>
     );
   }

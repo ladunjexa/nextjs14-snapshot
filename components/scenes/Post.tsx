@@ -10,6 +10,7 @@ import {Button} from '../ui/button';
 import Link from 'next/link';
 import {useDeletePost} from '@/lib/react-query/mutations/post.mutation';
 import {useRouter} from 'next/navigation';
+import Loader from '../shared/atoms/Loader';
 
 type Props = {
   postId: string;
@@ -22,7 +23,7 @@ const Post = ({postId}: Props) => {
 
   const {mutate: deletePost} = useDeletePost();
 
-  if (isPostPending) return <p>Loading...</p>;
+  if (isPostPending) return <Loader />;
 
   const handleDeletePost = () => {
     deletePost({postId, imageId: post?.imageId});
@@ -32,7 +33,7 @@ const Post = ({postId}: Props) => {
   return (
     <div className="post_details-container">
       {isPostPending || !post ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <div className="post_details-card">
           <Image
