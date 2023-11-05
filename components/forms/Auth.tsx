@@ -13,15 +13,16 @@ import {useUserContext} from '@/context/AuthContext';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 import {useCreateUserAccount, useSignInAccount} from '@/lib/react-query/mutations/user.mutation';
+import {SignInValidation, SignUpValidation} from '@/lib/validations';
 
 type Props = {
   action: 'SignIn' | 'SignUp';
-  formSchema: z.AnyZodObject;
 };
 
 const getActionData = (action: string) => {
   return action === 'SignIn'
     ? {
+        formSchema: SignInValidation,
         defaultValues: {
           email: '',
           password: '',
@@ -36,6 +37,7 @@ const getActionData = (action: string) => {
         },
       }
     : {
+        formSchema: SignUpValidation,
         defaultValues: {
           name: '',
           username: '',
@@ -53,10 +55,10 @@ const getActionData = (action: string) => {
       };
 };
 
-const Auth = ({action, formSchema}: Props) => {
+const Auth = ({action}: Props) => {
   const router = useRouter();
 
-  const {defaultValues, title, description, button, link} = getActionData(action);
+  const {formSchema, defaultValues, title, description, button, link} = getActionData(action);
 
   const isSignUp: boolean = action === 'SignUp';
 
@@ -75,8 +77,10 @@ const Auth = ({action, formSchema}: Props) => {
     try {
       if (isSignUp) {
         const newUser = await createUserAccount({
+          // @ts-ignore
           name: values.name,
           email: values.email,
+          // @ts-ignore
           username: values.username,
           password: values.password,
         });

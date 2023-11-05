@@ -3,11 +3,8 @@ import Image from 'next/image';
 
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar';
 import LocalResult from '@/components/shared/search/LocalResult';
-interface SearchParamsProps {
-  searchParams: {[key: string]: string | undefined};
-}
 
-export default function Page({searchParams}: SearchParamsProps) {
+export default function Page() {
   return (
     <div className="explore-container">
       <div className="explore-inner_container">
