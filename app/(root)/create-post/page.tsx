@@ -12,7 +12,7 @@ export default function Page() {
           <h2 className="h3-bold md:h2-bold w-full text-left">Create Post</h2>
         </div>
 
-        <Post />
+        <Post action="Create" />
       </div>
     </div>
   );

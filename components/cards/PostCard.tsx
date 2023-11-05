@@ -6,6 +6,7 @@ import {useUserContext} from '@/context/AuthContext';
 import {getTimestamp} from '@/lib/utils';
 
 import type {Models} from 'appwrite';
+import PostStats from '../shared/PostStats';
 
 type Props = {
   post: Models.Document;
@@ -68,7 +69,7 @@ const PostCard = ({post}: Props) => {
         />
       </Link>
 
-      {/* <PostStats /> */}
+      <PostStats post={post} userId={user.id} />
     </div>
   );
 };
