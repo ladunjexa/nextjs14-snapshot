@@ -1,5 +1,5 @@
 import {database, storage, ID} from '@/appwrite/client';
-import config from '@/appwrite/conf';
+import appwriteConfig from '@/appwrite/conf';
 
 import type {INewPost, IUpdatePost} from '@/types';
 import {Query} from 'appwrite';
@@ -26,8 +26,8 @@ export async function createPost(post: INewPost) {
 
     // Save post to database
     const newPost = await database.createDocument(
-      config.databaseId,
-      config.postCollectionId,
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
       ID.unique(),
       {
         creator: post.userId,
@@ -83,8 +83,8 @@ export async function updatePost(post: IUpdatePost) {
 
     // Save post to database
     const updatedPost = await database.updateDocument(
-      config.databaseId,
-      config.postCollectionId,
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
       post.postId,
       {
         caption: post.caption,
@@ -113,8 +113,8 @@ export async function deletePost(postId: string, imageId: string) {
 
   try {
     const deletedPost = await database.deleteDocument(
-      config.databaseId,
-      config.postCollectionId,
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
       postId
     );
 
@@ -130,7 +130,7 @@ export async function deletePost(postId: string, imageId: string) {
 
 export async function deleteFile(fileId: string) {
   try {
-    const deletedFile = await storage.deleteFile(config.storageId, fileId);
+    const deletedFile = await storage.deleteFile(appwriteConfig.storageId, fileId);
 
     if (!deletedFile) {
       throw new Error('File deletion failed');
@@ -144,7 +144,7 @@ export async function deleteFile(fileId: string) {
 
 export async function uploadFile(file: File) {
   try {
-    const uploadedFile = await storage.createFile(config.storageId, ID.unique(), file);
+    const uploadedFile = await storage.createFile(appwriteConfig.storageId, ID.unique(), file);
 
     return uploadedFile;
   } catch (error) {
@@ -154,7 +154,14 @@ export async function uploadFile(file: File) {
 
 export function getFilePreview(fileId: string) {
   try {
-    const fileUrl = storage.getFilePreview(config.storageId, fileId, 2000, 2000, 'top', 100);
+    const fileUrl = storage.getFilePreview(
+      appwriteConfig.storageId,
+      fileId,
+      2000,
+      2000,
+      'top',
+      100
+    );
 
     return fileUrl;
   } catch (error) {
@@ -164,7 +171,11 @@ export function getFilePreview(fileId: string) {
 
 export async function getPostById(postId: string) {
   try {
-    const post = await database.getDocument(config.databaseId, config.postCollectionId, postId);
+    const post = await database.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      postId
+    );
 
     if (!post) {
       throw new Error('Post retrieval failed');
@@ -178,10 +189,11 @@ export async function getPostById(postId: string) {
 
 export async function getRecentPosts() {
   try {
-    const posts = await database.listDocuments(config.databaseId, config.postCollectionId, [
-      Query.orderDesc('$createdAt'),
-      Query.limit(20),
-    ]);
+    const posts = await database.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      [Query.orderDesc('$createdAt'), Query.limit(20)]
+    );
 
     if (!posts) {
       throw new Error('Post retrieval failed');
@@ -196,8 +208,8 @@ export async function getRecentPosts() {
 export async function likePost(postId: string, likes: string[]) {
   try {
     const updatedPost = await database.updateDocument(
-      config.databaseId,
-      config.postCollectionId,
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
       postId,
       {likes}
     );
@@ -220,7 +232,11 @@ export async function getInfinitePosts({pageParam = 0}: {pageParam: number}) {
       queries.push(Query.cursorAfter(pageParam.toString()));
     }
 
-    const posts = await database.listDocuments(config.databaseId, config.postCollectionId, queries);
+    const posts = await database.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      queries
+    );
 
     if (!posts) {
       throw new Error('Post retrieval failed');
@@ -234,9 +250,11 @@ export async function getInfinitePosts({pageParam = 0}: {pageParam: number}) {
 
 export async function searchPosts(searchTerm: string) {
   try {
-    const posts = await database.listDocuments(config.databaseId, config.postCollectionId, [
-      Query.search('caption', searchTerm),
-    ]);
+    const posts = await database.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      [Query.search('caption', searchTerm)]
+    );
 
     if (!posts) {
       throw new Error('Post retrieval failed');
