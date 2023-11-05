@@ -1,5 +1,10 @@
 import React from 'react';
 import Follows from '@/components/scenes/Follows';
+import {Metadata} from 'next';
+
+export const metadata: Metadata = {
+  title: 'Followers — SnapShot',
+};
 
 type Props = {
   params: {id: string};

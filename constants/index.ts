@@ -13,13 +13,13 @@ export const sidebarLinks: INavLink[] = [
   },
   {
     imgURL: '/assets/icons/people.svg',
-    route: '/all-users',
-    label: 'People',
+    route: '/community',
+    label: 'Community',
   },
   {
     imgURL: '/assets/icons/bookmark.svg',
-    route: '/saved',
-    label: 'Saved',
+    route: '/collection',
+    label: 'Collection',
   },
   {
     imgURL: '/assets/icons/gallery-add.svg',
@@ -41,8 +41,8 @@ export const bottombarLinks: INavLink[] = [
   },
   {
     imgURL: '/assets/icons/bookmark.svg',
-    route: '/saved',
-    label: 'Saved',
+    route: '/collection',
+    label: 'Collection',
   },
   {
     imgURL: '/assets/icons/gallery-add.svg',

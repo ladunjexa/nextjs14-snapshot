@@ -36,8 +36,6 @@ const Post = ({postId}: Props) => {
 
   const relatedPosts = userPosts?.documents.filter(userPost => userPost.$id !== postId);
 
-  console.log(relatedPosts);
-
   return (
     <div className="post_details-container">
       {isPostPending || !post ? (

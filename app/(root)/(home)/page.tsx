@@ -1,4 +1,9 @@
 import RecentPosts from '@/components/scenes/RecentPosts';
+import {Metadata} from 'next';
+
+export const metadata: Metadata = {
+  title: 'Home — SnapShot',
+};
 
 export default function Home() {
   return (

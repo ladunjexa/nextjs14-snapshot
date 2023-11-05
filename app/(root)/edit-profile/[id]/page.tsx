@@ -1,6 +1,11 @@
 import Image from 'next/image';
 
 import Profile from '@/components/forms/Profile';
+import {Metadata} from 'next';
+
+export const metadata: Metadata = {
+  title: 'Edit Post — SnapShot',
+};
 
 type Props = {
   params: {id: string};

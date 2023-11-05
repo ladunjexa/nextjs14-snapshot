@@ -3,6 +3,11 @@ import Image from 'next/image';
 
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar';
 import LocalResult from '@/components/shared/search/LocalResult';
+import {Metadata} from 'next';
+
+export const metadata: Metadata = {
+  title: 'Explore — SnapShot',
+};
 
 type Props = {
   searchParams: {[key: string]: string | undefined};
@@ -10,8 +15,6 @@ type Props = {
 
 export default function Page({searchParams}: Props) {
   const query = searchParams.q;
-
-  console.log(query);
 
   return (
     <div className="explore-container">

@@ -2,6 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 
 import Post from '@/components/forms/Post';
+import {Metadata} from 'next';
+
+export const metadata: Metadata = {
+  title: 'Create Post — SnapShot',
+};
 
 export default function Page() {
   return (

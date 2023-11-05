@@ -1,7 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 
-import AllUsers from '@/components/scenes/AllUsers';
+import SavedPosts from '@/components/scenes/SavedPosts';
+import {Metadata} from 'next';
+
+export const metadata: Metadata = {
+  title: 'Collection — SnapShot',
+};
 
 export default function Page() {
   return (
@@ -9,16 +14,16 @@ export default function Page() {
       <div className="common-container">
         <div className="flex-start w-full max-w-5xl justify-start gap-3">
           <Image
-            src="/assets/icons/people.svg"
+            src="/assets/icons/bookmark.svg"
             width={36}
             height={36}
             alt="add"
             className="invert-white"
           />
-          <h2 className="h3-bold md:h2-bold w-full text-left">All Users</h2>
+          <h2 className="h3-bold md:h2-bold w-full text-left">Saved Posts</h2>
         </div>
 
-        <AllUsers />
+        <SavedPosts />
       </div>
     </div>
   );
