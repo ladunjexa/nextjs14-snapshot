@@ -187,3 +187,41 @@ export async function getUserById(userId: string) {
     console.log(error);
   }
 }
+
+export async function updateUserFollowers(userId: string, followers: string[]) {
+  try {
+    const user = await database.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      userId,
+      {
+        followers,
+      }
+    );
+
+    if (!user) throw Error;
+
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function updateUserFollowing(userId: string, following: string[]) {
+  try {
+    const user = await database.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      userId,
+      {
+        following,
+      }
+    );
+
+    if (!user) throw Error;
+
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+}

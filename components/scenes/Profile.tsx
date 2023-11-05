@@ -73,16 +73,22 @@ const Profile = ({userId}: Props) => {
             <div className={`${user.id !== currentUser.$id && 'hidden'}`}>
               <Link
                 href={`/edit-profile/${currentUser.$id}`}
-                className={`flex-center h-12 gap-2 rounded-lg bg-dark-4 px-5 text-light-1 ${
-                  user.id !== currentUser.$id && 'hidden'
-                }`}
+                className={`${user.id !== currentUser.$id && 'hidden'}`}
               >
-                <Image src="/assets/icons/edit.svg" alt="edit" width={20} height={20} />
-                <p className="small-medium flex whitespace-nowrap">Edit Profile</p>
+                <Button type="button" onClick={() => {}} className="shad-button_primary">
+                  <Image
+                    src="/assets/icons/edit.svg"
+                    alt="edit"
+                    width={20}
+                    height={20}
+                    className="invert-white"
+                  />
+                  <p className="small-medium flex whitespace-nowrap">Edit Profile</p>
+                </Button>
               </Link>
             </div>
 
-            <div className={`${user.id === userId && 'hidden'}`}>
+            <div className={`${user.id !== userId && 'hidden'}`}>
               <Button type="button" onClick={() => {}} className="shad-button_primary px-8">
                 Follow
               </Button>
