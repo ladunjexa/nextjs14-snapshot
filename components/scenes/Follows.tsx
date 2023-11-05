@@ -34,8 +34,8 @@ const Follows = ({type, viewedId}: Props) => {
         </div>
         {viewedUser[type.toLowerCase()].length === 0 ? (
           <Alert
-            title="No Followers Yet"
-            description={`It appears that ${viewedUser.name} have no followers 😔`}
+            title={`No ${type}`}
+            description={`It appears that ${viewedUser.name} have no ${type.toLowerCase()} 😔`}
             link="/"
             linkTitle="Explore Posts"
             imgSrc="/assets/icons/people.svg"
