@@ -1,35 +1,77 @@
 'use client';
 
 import React from 'react';
+import {useRouter} from 'next/navigation';
 
 import {useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
 
+import {useUserContext} from '@/context/AuthContext';
+
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Textarea} from '@/components/ui/textarea';
-import FileUploader from '../shared/FileUploader';
+import FileUploader from '@/components/shared/FileUploader';
 
+import {useCreatePost, useUpdatePost} from '@/lib/react-query/mutations/post.mutation';
 import {PostValidation} from '@/lib/validations';
 
-const Post = () => {
+import {useGetPostById} from '@/lib/react-query/queries/post.query';
+
+type Props = {
+  action: 'Create' | 'Update';
+  postId?: string;
+};
+
+const Post = ({action, postId}: Props) => {
+  const router = useRouter();
+
+  const {user} = useUserContext();
+  const {mutateAsync: createPost, isPending: isCreatingPost} = useCreatePost();
+  const {mutateAsync: updatePost, isPending: isUpdatingPost} = useUpdatePost();
+  const {data: post, isPending: isPostPending} = useGetPostById((postId as string) || '');
+
   const form = useForm<z.infer<typeof PostValidation>>({
     resolver: zodResolver(PostValidation),
     defaultValues: {
-      caption: '',
+      caption: post ? post?.caption : '',
       file: [],
-      location: '',
-      tags: '',
+      location: post ? post?.location : '',
+      tags: post ? post?.tags.join(',') : '',
     },
   });
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof PostValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    if (post && action === 'Update') {
+      const updatedPost = await updatePost({
+        ...values,
+        postId: post?.$id,
+        imageId: post?.imageId,
+        imageUrl: post?.imageUrl,
+      });
+
+      if (!updatedPost) {
+        // todo: add toast
+        return;
+      }
+
+      return router.push(`/posts/${post?.$id}`);
+    }
+
+    const newPost = await createPost({
+      ...values,
+      userId: user.id,
+    });
+
+    if (!newPost) {
+      // todo: add toast
+      return;
+    }
+
+    router.push('/');
   }
 
   return (
@@ -55,7 +97,11 @@ const Post = () => {
             <FormItem>
               <FormLabel className="shad-form_label">Add Photos</FormLabel>
               <FormControl>
-                <FileUploader type="Post" fieldChange={field.onChange} mediaUrl={''} />
+                <FileUploader
+                  type="Post"
+                  fieldChange={field.onChange}
+                  mediaUrl={post?.imageUrl || ''}
+                />
               </FormControl>
               <FormMessage className="shad-form_message" />
             </FormItem>
@@ -98,8 +144,12 @@ const Post = () => {
           <Button type="button" className="shad-button_dark_4">
             Cancel
           </Button>
-          <Button type="submit" className="shad-button_primary whitespace-nowrap">
-            Create Post
+          <Button
+            type="submit"
+            className="shad-button_primary whitespace-nowrap"
+            disabled={isCreatingPost || isUpdatingPost}
+          >
+            {action} Post
           </Button>
         </div>
       </form>
