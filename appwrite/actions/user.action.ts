@@ -95,3 +95,19 @@ export async function signOutAccount() {
     console.error(error);
   }
 }
+
+export async function getUsers(limit?: number) {
+  try {
+    const users = await database.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      [Query.orderDesc('$createdAt'), Query.limit(10)]
+    );
+
+    if (!users) throw Error;
+
+    return users;
+  } catch (error) {
+    console.log(error);
+  }
+}
