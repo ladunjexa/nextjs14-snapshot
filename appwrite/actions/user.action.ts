@@ -1,6 +1,7 @@
 import {INewUser} from '@/types';
 import appwriteConfig from '../conf';
 import {account, avatars, database, ID} from '../client';
+import {Query} from 'appwrite';
 
 export async function createUserAccount(user: INewUser) {
   try {
@@ -56,6 +57,30 @@ export async function signInAccount(user: {email: string; password: string}) {
     const session = await account.createEmailSession(user.email, user.password);
 
     return session;
+  } catch (error: any) {
+    console.error(error);
+  }
+}
+
+export async function getCurrentUser() {
+  try {
+    const currentAccount = await account.get();
+
+    if (!currentAccount) {
+      throw new Error('No current user');
+    }
+
+    const currentUser = await database.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      [Query.equal('accountId', currentAccount.$id)]
+    );
+
+    if (!currentUser) {
+      throw new Error('No user found');
+    }
+
+    return currentUser.documents[0];
   } catch (error: any) {
     console.error(error);
   }
