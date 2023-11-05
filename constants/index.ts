@@ -50,3 +50,11 @@ export const bottombarLinks: INavLink[] = [
     label: 'Create',
   },
 ];
+
+export const ERROR_ALERT_PROPS = {
+  title: 'Error Occured',
+  description: 'Something went wrong. Please try again later.',
+  link: '/',
+  linkTitle: 'Explore Posts',
+  imgSrc: '/assets/icons/error.svg',
+};

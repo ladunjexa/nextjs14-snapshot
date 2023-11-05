@@ -4,11 +4,13 @@ import React from 'react';
 import {useGetUsers} from '@/lib/react-query/queries/user.query';
 import UserCard from '@/components/cards/UserCard';
 import Loader from '../atoms/Loader';
+import Alert from '../atoms/Alert';
+import {ERROR_ALERT_PROPS} from '@/constants';
 
 const RightSidebar = () => {
   const {data: creators, isLoading: isUserLoading, isError: isCreatorsError} = useGetUsers(10);
 
-  if (isCreatorsError) return <p>Error...</p>;
+  if (isCreatorsError) return <Alert {...ERROR_ALERT_PROPS} />;
 
   if (isUserLoading && !creators) return <Loader />;
 

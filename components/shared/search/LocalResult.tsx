@@ -8,6 +8,7 @@ import {useGetPosts, useSearchPosts} from '@/lib/react-query/queries/post.query'
 import useDebounce from '@/hooks/useDebounce';
 import Loader from '../atoms/Loader';
 import {useInView} from 'react-intersection-observer';
+import Alert from '../atoms/Alert';
 
 const LocalResult = () => {
   const searchParams = useSearchParams();
@@ -41,7 +42,13 @@ const LocalResult = () => {
           searchedPosts && searchedPosts.documents.length > 0 ? (
             <GridPostList posts={searchedPosts.documents} />
           ) : (
-            <p className="mt-10 w-full text-center text-light-4">No results</p>
+            <Alert
+              title="No Posts Found"
+              description="It appears that there are no posts matching your search query 😔. Try searching for something else 💡"
+              link="/"
+              linkTitle="Explore Posts"
+              imgSrc="/assets/icons/magnify.png"
+            />
           )
         ) : shouldShowPosts ? (
           <p className="mt-10 w-full text-center text-light-4">End of posts</p>

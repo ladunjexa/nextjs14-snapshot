@@ -5,13 +5,15 @@ import {Models} from 'appwrite';
 import React from 'react';
 import PostCard from '../cards/PostCard';
 import Loader from '../shared/atoms/Loader';
+import Alert from '../shared/atoms/Alert';
+import {ERROR_ALERT_PROPS} from '@/constants';
 
 const RecentPosts = () => {
   const {data: posts, isPending: isPostLoading, isError: isPostError} = useGetRecentPosts();
 
-  if (isPostError) {
-    return <p>Error..</p>;
-  }
+  const isOK = true;
+
+  if (isOK || isPostError) return <Alert {...ERROR_ALERT_PROPS} />;
 
   return (
     <>
