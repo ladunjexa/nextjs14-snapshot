@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
@@ -11,6 +10,10 @@ import {Button} from '@/components/ui/button';
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
 import {SignInValidation, SignUpValidation} from '@/lib/validations';
+import {useUserContext} from '@/context/AuthContext';
+import {useRouter} from 'next/navigation';
+import Link from 'next/link';
+import {useCreateUserAccount, useSignInAccount} from '@/lib/react-query/mutations/user.mutation';
 
 type Props = {
   action: 'SignIn' | 'SignUp';
@@ -53,9 +56,15 @@ const getActionData = (action: string) => {
 };
 
 const Auth = ({action}: Props) => {
+  const router = useRouter();
+
   const {formSchema, defaultValues, title, description, button, link} = getActionData(action);
 
   const isSignUp: boolean = action === 'SignUp';
+
+  const {checkAuthUser, isLoading: isUserLoading} = useUserContext();
+  const {mutateAsync: createUserAccount, isPending: isCreatingAccount} = useCreateUserAccount();
+  const {mutateAsync: signInAccount, isPending: isSigningIn} = useSignInAccount();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -64,10 +73,42 @@ const Auth = ({action}: Props) => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      if (isSignUp) {
+        const newUser = await createUserAccount({
+          name: values.name,
+          email: values.email,
+          username: values.username,
+          password: values.password,
+        });
+
+        if (!newUser) {
+          return;
+        }
+      }
+
+      const session = await signInAccount({
+        email: values.email,
+        password: values.password,
+      });
+
+      if (!session) {
+        return;
+      }
+
+      const isLoggedIn = await checkAuthUser();
+
+      if (isLoggedIn) {
+        form.reset();
+
+        router.push('/');
+      } else {
+        throw new Error('Something went wrong');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
