@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState} from 'react';
+import React from 'react';
 import Image from 'next/image';
 import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog';
 import {Button} from '../ui/button';
@@ -8,8 +8,6 @@ import {Button} from '../ui/button';
 type Props = {};
 
 const Stories = (props: Props) => {
-  const [render, setRender] = useState(false);
-
   const handleLeftArrowClick = () => {};
 
   const handleRightArrowClick = () => {};
@@ -26,7 +24,6 @@ const Stories = (props: Props) => {
                   alt="profile"
                   width={16}
                   height={16}
-                  onClick={() => setRender(!render)}
                   className="h-16 w-16 rounded-full border-2 border-primary-500 p-1"
                   unoptimized
                 />
@@ -38,7 +35,6 @@ const Stories = (props: Props) => {
                   alt="profile"
                   width={438}
                   height={780}
-                  onClick={() => setRender(!render)}
                   unoptimized
                   className="h-screen w-fit md:h-[500px] md:w-[280px]"
                 />
