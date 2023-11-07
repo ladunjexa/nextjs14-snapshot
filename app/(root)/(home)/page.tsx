@@ -1,4 +1,4 @@
-import AllStories from '@/components/scenes/AllStories';
+// import AllStories from '@/components/scenes/AllStories';
 import RecentPosts from '@/components/scenes/RecentPosts';
 
 import {Metadata} from 'next';
@@ -12,7 +12,7 @@ export default function Home() {
     <div className="flex flex-1">
       <div className="home-container">
         <div className="home-posts">
-          <AllStories />
+          {/* <AllStories /> */}
 
           <h2 className="h3-bold md:h2-bold w-full text-left">Feed</h2>
 
