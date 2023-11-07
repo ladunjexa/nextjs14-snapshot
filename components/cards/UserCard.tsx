@@ -3,14 +3,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import {Button} from '@/components/ui/button';
+import Loader from '@/components/shared/atoms/Loader';
+
 import {
   useUpdateUserFollowers,
   useUpdateUserFollowing,
 } from '@/lib/react-query/mutations/user.mutation';
+import {useGetCurrentUser} from '@/lib/react-query/queries/user.query';
 
 import type {Models} from 'appwrite';
-import {useGetCurrentUser} from '@/lib/react-query/queries/user.query';
-import Loader from '../shared/atoms/Loader';
 
 type Props = {
   user: Models.Document;

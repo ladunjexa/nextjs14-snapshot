@@ -1,8 +1,10 @@
-import type {INewUser, IUpdateUser} from '@/types';
-import appwriteConfig from '../conf';
-import {account, avatars, database, ID} from '../client';
 import {Query} from 'appwrite';
-import {uploadFile, getFilePreview, deleteFile} from './post.action';
+
+import {account, avatars, database, ID} from '@/appwrite/client';
+import {uploadFile, getFilePreview, deleteFile} from '@/appwrite/actions/post.action';
+import appwriteConfig from '@/appwrite/conf';
+
+import type {INewUser, IUpdateUser} from '@/types';
 
 export async function createUserAccount(user: INewUser) {
   try {

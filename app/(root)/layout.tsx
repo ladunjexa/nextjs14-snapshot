@@ -1,8 +1,9 @@
+import React from 'react';
+
 import Bottombar from '@/components/shared/layout/Bottombar';
 import LeftSidebar from '@/components/shared/layout/LeftSidebar';
 import RightSidebar from '@/components/shared/layout/RightSidebar';
 import Topbar from '@/components/shared/layout/Topbar';
-import React from 'react';
 
 export default function Layout({children}: {children: React.ReactNode}) {
   return (

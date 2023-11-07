@@ -1,9 +1,9 @@
 import {useQuery} from '@tanstack/react-query';
 
 import {getCurrentUser, getUserById, getUsers} from '@/appwrite/actions/user.action';
+import {getUserPosts} from '@/appwrite/actions/post.action';
 
 import QUERY_KEYS from '@/lib/react-query/QueryKeys';
-import {getUserPosts} from '@/appwrite/actions/post.action';
 
 export const useGetCurrentUser = () => {
   return useQuery({

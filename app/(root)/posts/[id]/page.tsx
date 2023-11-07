@@ -1,4 +1,5 @@
 import Post from '@/components/scenes/Post';
+
 import type {Metadata} from 'next';
 
 export const metadata: Metadata = {

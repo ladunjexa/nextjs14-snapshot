@@ -3,12 +3,13 @@
 import React, {useState, useEffect} from 'react';
 import Image from 'next/image';
 
+import Loader from '@/components/shared/atoms/Loader';
+
 import {useDeleteSavedPost, useSavePost} from '@/lib/react-query/mutations/save.mutation';
 import {useLikePost} from '@/lib/react-query/mutations/post.mutation';
 import {useGetCurrentUser} from '@/lib/react-query/queries/user.query';
 
 import type {Models} from 'appwrite';
-import Loader from './atoms/Loader';
 
 type PostStatsProps = {
   post: Models.Document;

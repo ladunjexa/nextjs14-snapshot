@@ -2,10 +2,13 @@ import React from 'react';
 import {Inter} from 'next/font/google';
 import './globals.css';
 
-import type {Metadata} from 'next';
 import AuthProvider from '@/context/AuthContext';
-import Provider from '@/lib/react-query/Provider';
+
 import {Toaster} from '@/components/ui/toaster';
+
+import Provider from '@/lib/react-query/Provider';
+
+import type {Metadata} from 'next';
 
 const inter = Inter({subsets: ['latin']});
 

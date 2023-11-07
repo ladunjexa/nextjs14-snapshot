@@ -3,11 +3,12 @@
 import React from 'react';
 
 import GridPostList from '@/components/shared/GridPostList';
-import Loader from '../shared/atoms/Loader';
+import Loader from '@/components/shared/atoms/Loader';
+import Alert from '@/components/shared/atoms/Alert';
+
 import {useGetCurrentUser} from '@/lib/react-query/queries/user.query';
 
 import type {Models} from 'appwrite';
-import Alert from '../shared/atoms/Alert';
 
 type Props = {};
 

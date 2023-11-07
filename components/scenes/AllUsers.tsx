@@ -1,10 +1,12 @@
 'use client';
 
 import React from 'react';
+
+import UserCard from '@/components/cards/UserCard';
+import Loader from '@/components/shared/atoms/Loader';
+import Alert from '@/components/shared/atoms/Alert';
+
 import {useGetUsers} from '@/lib/react-query/queries/user.query';
-import UserCard from '../cards/UserCard';
-import Loader from '../shared/atoms/Loader';
-import Alert from '../shared/atoms/Alert';
 
 import {ERROR_ALERT_PROPS} from '@/constants';
 

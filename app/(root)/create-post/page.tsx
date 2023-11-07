@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import Post from '@/components/forms/Post';
+
 import type {Metadata} from 'next';
 
 export const metadata: Metadata = {

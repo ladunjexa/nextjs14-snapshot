@@ -1,19 +1,22 @@
 'use client';
 
-import {useUserContext} from '@/context/AuthContext';
-import {useGetPostById} from '@/lib/react-query/queries/post.query';
-import {getLocaleDate} from '@/lib/utils';
-import Image from 'next/image';
 import React from 'react';
-import PostStats from '../shared/PostStats';
-import {Button} from '../ui/button';
+import Image from 'next/image';
 import Link from 'next/link';
-import {useDeletePost} from '@/lib/react-query/mutations/post.mutation';
 import {useRouter} from 'next/navigation';
-import Loader from '../shared/atoms/Loader';
+
+import {useUserContext} from '@/context/AuthContext';
+
+import {Button} from '@/components/ui/button';
+import PostStats from '@/components/shared/PostStats';
+import GridPostList from '@/components/shared/GridPostList';
+import Loader from '@/components/shared/atoms/Loader';
+import Alert from '@/components/shared/atoms/Alert';
+
+import {useGetPostById} from '@/lib/react-query/queries/post.query';
+import {useDeletePost} from '@/lib/react-query/mutations/post.mutation';
 import {useGetUserPosts} from '@/lib/react-query/queries/user.query';
-import GridPostList from '../shared/GridPostList';
-import Alert from '../shared/atoms/Alert';
+import {getLocaleDate} from '@/lib/utils';
 
 type Props = {
   postId: string;

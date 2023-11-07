@@ -1,14 +1,16 @@
 'use client';
 
-import {useSearchParams} from 'next/navigation';
-
 import React, {useEffect} from 'react';
-import GridPostList from '../GridPostList';
-import {useGetPosts, useSearchPosts} from '@/lib/react-query/queries/post.query';
-import useDebounce from '@/hooks/useDebounce';
-import Loader from '../atoms/Loader';
+import {useSearchParams} from 'next/navigation';
 import {useInView} from 'react-intersection-observer';
-import Alert from '../atoms/Alert';
+
+import useDebounce from '@/hooks/useDebounce';
+
+import GridPostList from '@/components/shared/GridPostList';
+import Loader from '@/components/shared/atoms/Loader';
+import Alert from '@/components/shared/atoms/Alert';
+
+import {useGetPosts, useSearchPosts} from '@/lib/react-query/queries/post.query';
 
 const LocalResult = () => {
   const searchParams = useSearchParams();

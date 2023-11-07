@@ -1,6 +1,6 @@
 import {Client, Account, Databases, Storage, Avatars} from 'appwrite';
 
-import appwriteConfig from './conf';
+import appwriteConfig from '@/appwrite/conf';
 
 export const client = new Client();
 

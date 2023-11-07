@@ -1,12 +1,16 @@
 'use client';
 
-import {useGetRecentPosts} from '@/lib/react-query/queries/post.query';
-import {Models} from 'appwrite';
 import React from 'react';
-import PostCard from '../cards/PostCard';
-import Loader from '../shared/atoms/Loader';
-import Alert from '../shared/atoms/Alert';
+
+import PostCard from '@/components/cards/PostCard';
+import Loader from '@/components/shared/atoms/Loader';
+import Alert from '@/components/shared/atoms/Alert';
+
+import {useGetRecentPosts} from '@/lib/react-query/queries/post.query';
+
 import {ERROR_ALERT_PROPS} from '@/constants';
+
+import type {Models} from 'appwrite';
 
 const RecentPosts = () => {
   const {data: posts, isPending: isPostLoading, isError: isPostError} = useGetRecentPosts();

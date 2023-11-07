@@ -1,12 +1,15 @@
 'use client';
 
 import React from 'react';
-import {useGetUsers} from '@/lib/react-query/queries/user.query';
-import UserCard from '@/components/cards/UserCard';
-import Loader from '../atoms/Loader';
-import Alert from '../atoms/Alert';
-import {ERROR_ALERT_PROPS} from '@/constants';
 import {usePathname} from 'next/navigation';
+
+import UserCard from '@/components/cards/UserCard';
+import Loader from '@/components/shared/atoms/Loader';
+import Alert from '@/components/shared/atoms/Alert';
+
+import {ERROR_ALERT_PROPS} from '@/constants';
+
+import {useGetUsers} from '@/lib/react-query/queries/user.query';
 
 const RightSidebar = () => {
   const pathname = usePathname();

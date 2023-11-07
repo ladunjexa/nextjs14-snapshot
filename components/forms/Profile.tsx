@@ -13,14 +13,13 @@ import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Textarea} from '@/components/ui/textarea';
+import {useToast} from '@/components/ui/use-toast';
 import FileUploader from '@/components/shared/FileUploader';
-
-import {ProfileValidation} from '@/lib/validations';
+import Loader from '@/components/shared/atoms/Loader';
 
 import {useGetUserById} from '@/lib/react-query/queries/user.query';
 import {useUpdateUserAccount} from '@/lib/react-query/mutations/user.mutation';
-import Loader from '../shared/atoms/Loader';
-import {useToast} from '../ui/use-toast';
+import {ProfileValidation} from '@/lib/validations';
 
 type Props = {
   userId: string;

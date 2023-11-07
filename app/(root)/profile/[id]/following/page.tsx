@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Follows from '@/components/scenes/Follows';
+
 import type {Metadata} from 'next';
 
 export const metadata: Metadata = {

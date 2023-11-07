@@ -1,4 +1,5 @@
 import Profile from '@/components/scenes/Profile';
+
 import type {Metadata} from 'next';
 
 export const metadata: Metadata = {

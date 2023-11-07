@@ -1,5 +1,7 @@
 'use client';
 
+import {useMutation, useQueryClient} from '@tanstack/react-query';
+
 import {
   createUserAccount,
   signInAccount,
@@ -8,9 +10,10 @@ import {
   updateUserFollowers,
   updateUserFollowing,
 } from '@/appwrite/actions/user.action';
+
+import QUERY_KEYS from '@/lib/react-query/QueryKeys';
+
 import type {INewUser, IUpdateUser} from '@/types';
-import {useMutation, useQueryClient} from '@tanstack/react-query';
-import QUERY_KEYS from '../QueryKeys';
 
 export const useCreateUserAccount = () => {
   return useMutation({

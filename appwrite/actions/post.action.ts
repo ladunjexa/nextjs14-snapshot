@@ -1,8 +1,9 @@
+import {Query} from 'appwrite';
+
 import {database, storage, ID} from '@/appwrite/client';
 import appwriteConfig from '@/appwrite/conf';
 
 import type {INewPost, IUpdatePost} from '@/types';
-import {Query} from 'appwrite';
 
 export async function createPost(post: INewPost) {
   try {

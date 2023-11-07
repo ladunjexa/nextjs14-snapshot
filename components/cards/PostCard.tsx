@@ -3,10 +3,11 @@ import Image from 'next/image';
 
 import {useUserContext} from '@/context/AuthContext';
 
+import PostStats from '@/components/shared/PostStats';
+
 import {getLocaleDate} from '@/lib/utils';
 
 import type {Models} from 'appwrite';
-import PostStats from '../shared/PostStats';
 
 type Props = {
   post: Models.Document;

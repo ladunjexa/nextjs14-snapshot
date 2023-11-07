@@ -13,14 +13,13 @@ import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Textarea} from '@/components/ui/textarea';
+import {useToast} from '@/components/ui/use-toast';
 import FileUploader from '@/components/shared/FileUploader';
+import Loader from '@/components/shared/atoms/Loader';
 
 import {useCreatePost, useUpdatePost} from '@/lib/react-query/mutations/post.mutation';
-import {PostValidation} from '@/lib/validations';
-
 import {useGetPostById} from '@/lib/react-query/queries/post.query';
-import Loader from '../shared/atoms/Loader';
-import {useToast} from '../ui/use-toast';
+import {PostValidation} from '@/lib/validations';
 
 type Props = {
   action: 'Create' | 'Update';

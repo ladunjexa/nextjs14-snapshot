@@ -7,13 +7,13 @@ import Image from 'next/image';
 import {Button} from '@/components/ui/button';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
 import GridPostList from '@/components/shared/GridPostList';
-
-import {useGetCurrentUser, useGetUserById} from '@/lib/react-query/queries/user.query';
 import Loader from '@/components/shared/atoms/Loader';
+
 import {
   useUpdateUserFollowers,
   useUpdateUserFollowing,
 } from '@/lib/react-query/mutations/user.mutation';
+import {useGetCurrentUser, useGetUserById} from '@/lib/react-query/queries/user.query';
 
 type Props = {
   userId: string;

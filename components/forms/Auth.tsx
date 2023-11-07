@@ -1,21 +1,23 @@
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
+import {useRouter} from 'next/navigation';
 
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 import * as z from 'zod';
 
-import {Button} from '@/components/ui/button';
-import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
-import {Input} from '@/components/ui/input';
 import {useUserContext} from '@/context/AuthContext';
-import {useRouter} from 'next/navigation';
-import Link from 'next/link';
+
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
+import {Button} from '@/components/ui/button';
+import {Input} from '@/components/ui/input';
+import {useToast} from '@/components/ui/use-toast';
+import Loader from '@/components/shared/atoms/Loader';
+
 import {useCreateUserAccount, useSignInAccount} from '@/lib/react-query/mutations/user.mutation';
 import {SignInValidation, SignUpValidation} from '@/lib/validations';
-import Loader from '../shared/atoms/Loader';
-import {useToast} from '../ui/use-toast';
 
 type Props = {
   action: 'SignIn' | 'SignUp';

@@ -1,8 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import React from 'react';
-import Story from '../shared/Story';
+import Image from 'next/image';
+
+import Story from '@/components/shared/Story';
 
 const AllStories = () => {
   return (

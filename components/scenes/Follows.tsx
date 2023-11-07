@@ -1,11 +1,13 @@
 'use client';
 
 import React from 'react';
-import FollowCard from '../cards/FollowCard';
 import Image from 'next/image';
+
+import FollowCard from '@/components/cards/FollowCard';
+import Loader from '@/components/shared/atoms/Loader';
+import Alert from '@/components/shared/atoms/Alert';
+
 import {useGetUserById} from '@/lib/react-query/queries/user.query';
-import Loader from '../shared/atoms/Loader';
-import Alert from '../shared/atoms/Alert';
 
 type Props = {
   type: 'Followers' | 'Following';

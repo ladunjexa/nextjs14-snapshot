@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import AllUsers from '@/components/scenes/AllUsers';
+
 import type {Metadata} from 'next';
 
 export const metadata: Metadata = {

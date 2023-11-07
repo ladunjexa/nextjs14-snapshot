@@ -1,11 +1,13 @@
 'use client';
 
-import {useRouter} from 'next/navigation';
 import React from 'react';
-import {Button} from '../ui/button';
 import Image from 'next/image';
+import {useRouter} from 'next/navigation';
+
+import {Button} from '@/components/ui/button';
+import Loader from '@/components/shared/atoms/Loader';
+
 import {useGetUserById} from '@/lib/react-query/queries/user.query';
-import Loader from '../shared/atoms/Loader';
 
 type Props = {
   followerId: string;
