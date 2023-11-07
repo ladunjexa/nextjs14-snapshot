@@ -15,7 +15,13 @@ type Props = {
 const Follows = ({type, viewedId}: Props) => {
   const {data: viewedUser, isPending: isUserPending} = useGetUserById(viewedId);
 
-  if (isUserPending || !viewedUser) return <Loader />;
+  if (isUserPending || !viewedUser) {
+    return (
+      <div className="flex-center h-full w-full">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-1">

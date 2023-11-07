@@ -16,7 +16,13 @@ const FollowCard = ({followerId}: Props) => {
 
   const {data: user, isPending: isUserPending} = useGetUserById(followerId);
 
-  if (isUserPending || !user) return <Loader />;
+  if (isUserPending || !user) {
+    return (
+      <div className="flex-center h-full w-full">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <article className="follow-card w-full">

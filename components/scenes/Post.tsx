@@ -27,7 +27,13 @@ const Post = ({postId}: Props) => {
 
   const {mutate: deletePost} = useDeletePost();
 
-  if (isPostPending) return <Loader />;
+  if (isPostPending) {
+    return (
+      <div className="flex-center h-full w-full">
+        <Loader />
+      </div>
+    );
+  }
 
   const handleDeletePost = () => {
     deletePost({postId, imageId: post?.imageId});

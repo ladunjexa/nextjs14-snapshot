@@ -14,7 +14,13 @@ const RightSidebar = () => {
 
   if (isCreatorsError) return <Alert {...ERROR_ALERT_PROPS} />;
 
-  if (isUserLoading && !creators) return <Loader />;
+  if (isUserLoading && !creators) {
+    return (
+      <div className="flex-center h-full w-full">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <section
