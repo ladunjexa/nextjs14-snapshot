@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import GridPostList from '@/components/shared/GridPostList';
 import Loader from '@/components/shared/atoms/Loader';
 import Alert from '@/components/shared/atoms/Alert';

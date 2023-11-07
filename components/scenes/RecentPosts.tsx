@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import PostCard from '@/components/cards/PostCard';
 import Loader from '@/components/shared/atoms/Loader';
 import Alert from '@/components/shared/atoms/Alert';
