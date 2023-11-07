@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import Post from '@/components/forms/Post';
-import {Metadata} from 'next';
+import type {Metadata} from 'next';
 
 export const metadata: Metadata = {
   title: 'Edit Post — SnapShot',

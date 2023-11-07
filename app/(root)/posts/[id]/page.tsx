@@ -1,5 +1,5 @@
 import Post from '@/components/scenes/Post';
-import {Metadata} from 'next';
+import type {Metadata} from 'next';
 
 export const metadata: Metadata = {
   title: 'Posts — SnapShot',

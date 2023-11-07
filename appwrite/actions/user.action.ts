@@ -1,4 +1,4 @@
-import {INewUser, IUpdateUser} from '@/types';
+import type {INewUser, IUpdateUser} from '@/types';
 import appwriteConfig from '../conf';
 import {account, avatars, database, ID} from '../client';
 import {Query} from 'appwrite';

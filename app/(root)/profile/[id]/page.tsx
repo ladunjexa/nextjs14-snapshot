@@ -1,5 +1,5 @@
 import Profile from '@/components/scenes/Profile';
-import {Metadata} from 'next';
+import type {Metadata} from 'next';
 
 export const metadata: Metadata = {
   title: 'Profile — SnapShot',

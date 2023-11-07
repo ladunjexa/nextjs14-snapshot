@@ -1,7 +1,7 @@
 // import AllStories from '@/components/scenes/AllStories';
 import RecentPosts from '@/components/scenes/RecentPosts';
 
-import {Metadata} from 'next';
+import type {Metadata} from 'next';
 
 export const metadata: Metadata = {
   title: 'Home — SnapShot',

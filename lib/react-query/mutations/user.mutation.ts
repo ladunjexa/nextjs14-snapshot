@@ -8,7 +8,7 @@ import {
   updateUserFollowers,
   updateUserFollowing,
 } from '@/appwrite/actions/user.action';
-import {INewUser, IUpdateUser} from '@/types';
+import type {INewUser, IUpdateUser} from '@/types';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
 import QUERY_KEYS from '../QueryKeys';
 
