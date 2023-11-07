@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import {useUserContext} from '@/context/AuthContext';
 
-import {getLocaleDate, getTimestamp} from '@/lib/utils';
+import {getLocaleDate} from '@/lib/utils';
 
 import type {Models} from 'appwrite';
 import PostStats from '../shared/PostStats';
