@@ -11,6 +11,7 @@ const nextConfig = {
         hostname: 'cloud.appwrite.io',
       },
     ],
+    unoptimized: true,
   },
 };
 
