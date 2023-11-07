@@ -71,3 +71,12 @@ export const removeKeysFromQuery = ({params, keysToRemove}: RemoveUrlQueryParams
     {skipNull: true}
   );
 };
+
+export const getLocaleDate = (isoDate: Date | string): string => {
+  const date: Date = new Date(isoDate);
+
+  const day: number = date.getDate();
+  const month = date.toLocaleString('en-US', {month: 'long', minute: 'numeric', hour: 'numeric'});
+
+  return `${day} ${month}`;
+};

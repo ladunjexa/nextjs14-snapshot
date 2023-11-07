@@ -2,7 +2,7 @@
 
 import {useUserContext} from '@/context/AuthContext';
 import {useGetPostById} from '@/lib/react-query/queries/post.query';
-import {getTimestamp} from '@/lib/utils';
+import {getLocaleDate} from '@/lib/utils';
 import Image from 'next/image';
 import React from 'react';
 import PostStats from '../shared/PostStats';
@@ -65,7 +65,7 @@ const Post = ({postId}: Props) => {
                   <div className="flex-center gap-2 text-light-3">
                     {post.$createdAt && (
                       <p className="subtle-semibold lg:small-regular">
-                        {getTimestamp(post.$createdAt)}
+                        {getLocaleDate(post.$createdAt)}
                       </p>
                     )}
                     -<p className="subtle-semibold lg:small-regular">{post.location}</p>

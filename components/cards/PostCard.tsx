@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import {useUserContext} from '@/context/AuthContext';
 
-import {getTimestamp} from '@/lib/utils';
+import {getLocaleDate, getTimestamp} from '@/lib/utils';
 
 import type {Models} from 'appwrite';
 import PostStats from '../shared/PostStats';
@@ -34,7 +34,7 @@ const PostCard = ({post}: Props) => {
           <div className="flex flex-col">
             <p className="base-medium lg:body-bold text-light-1">{post.creator.name}</p>
             <div className="flex-center gap-2 text-light-3">
-              <p className="subtle-semibold lg:small-regular">{getTimestamp(post.$createdAt)}</p>-
+              <p className="subtle-semibold lg:small-regular">{getLocaleDate(post.$createdAt)}</p>-
               <p className="subtle-semibold lg:small-regular">{post.location}</p>
             </div>
           </div>
