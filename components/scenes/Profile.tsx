@@ -81,7 +81,7 @@ const Profile = ({userId}: Props) => {
           />
           <div className="flex flex-1 flex-col justify-between text-center md:mt-2 xl:text-left">
             <div className="flex w-full flex-col">
-              <h1 className="h3-bold md:h1-semibold w-full ">{viewedUser.name}</h1>
+              <h1 className="h3-bold md:h2-bold w-full ">{viewedUser.name}</h1>
               <p className="small-regular md:body-medium text-light-3">@{viewedUser.username}</p>
             </div>
 
@@ -102,7 +102,7 @@ const Profile = ({userId}: Props) => {
             <p className="small-medium md:base-medium mt-7 max-w-screen-sm">{viewedUser.bio}</p>
           </div>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 md:mt-2">
             <div className={`${currentUser.$id !== viewedUser.$id && 'hidden'}`}>
               <Link
                 href={`/edit-profile/${viewedUser.$id}`}

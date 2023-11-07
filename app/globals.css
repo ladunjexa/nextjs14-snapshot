@@ -191,7 +191,7 @@
   }
 
   .profile-tab {
-    @apply flex-center gap-3 py-4 w-48 bg-dark-2 transition flex-1 xl:flex-initial data-[state=active]:bg-dark-3;
+    @apply flex-center gap-3 py-4 w-40 bg-dark-2 transition flex-1 xl:flex-initial data-[state=active]:bg-dark-3;
   }
 
   /* Saved */

@@ -1,0 +1,12 @@
+<svg width="73" height="72" viewBox="0 0 73 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Avatar-Circle">
+<circle id="Ellipse 2" cx="36.5" cy="36" r="34.6364" stroke="url(#paint0_linear_1_277)" stroke-width="2.72727"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_1_277" x1="36.5" y1="0" x2="36.5" y2="72" gradientUnits="userSpaceOnUse">
+<stop stop-color="#877EFF"/>
+<stop offset="0.461458" stop-color="#685DFF"/>
+<stop offset="1" stop-color="#3121FF"/>
+</linearGradient>
+</defs>
+</svg>
