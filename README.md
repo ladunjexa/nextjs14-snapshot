@@ -25,7 +25,7 @@ Explore the live demonstration of the project: [nextjs14-snapshot](https://nextj
 
 ## 📝 Description
 
-**SnapShot** is a modern social app with a stunning UI with a native mobile feel, a special tech stack, an infinite scroll feature, and amazing performance using React JS, Appwrite, TypeScript, and more.
+**SnapShot** is a modern social app with a stunning UI with a native mobile feel, a special tech stack, an infinite scroll feature, and amazing performance using Next.js, Appwrite, TypeScript, and more.
 
 <details><summary><b>Folder Structure</b></summary>
 
